@@ -1,91 +1,42 @@
-// {
-// 	"manifest_version": 2,
-//   "name": "Hello World!",
-//   "version": "1.0",
-//   "description": "My first Chrome extension.",
-//   "background": {"scripts": ["background.js"]},
-//   "browser_action": {
-//     "default_icon": "icon.png",
-//     "default_popup": "popup.html"
-//   },
-//   "commands": {
-// 	  "_execute_browser_action": {
-// 	    "suggested_key": {
-// 	      "windows": "Ctrl+Shift+Y",
-//         "mac": "Command+Shift+Y",
-//         "chromeos": "Ctrl+Shift+U",
-//         "linux": "Ctrl+Shift+J"
-// 	    }
-// 	  }
-// 	//   "_execute_page_action": {
-//  //      "suggested_key": {
-//  //        "default": "Ctrl+Shift+E",
-//  //        "windows": "Alt+Shift+P",
-//  //        "mac": "Alt+Shift+P"
-//  //      }
-//  //    }
-// 	// },
-// 	  // "shortcut_test": {
-// 	  //   "suggested_key": {
-// 	  //     "windows": "Ctrl+Shift+Y",
-//    //      "mac": "Command+Shift+Y",
-//    //      "chromeos": "Ctrl+Shift+U",
-//    //      "linux": "Ctrl+Shift+J"
-// 		 //  },
-// 		 //  "description": "A test shortcut"
-// 	  // }
-// 	}
-// }
-// {
-// "name": "Sample Extension Commands extension",
-//   "description": "Press Ctrl+Shift+F (Command+Shift+F on a Mac) to open the browser action popup, press Ctrl+Shift+Y to send an event (Command+Shift+Y on a Mac).",
-//   "version": "1.0",
-//   "manifest_version": 2,
-//   "background": {
-//     "scripts": ["background.js"],
-//     "persistent": false
-//   },
-//   "browser_action": {
-//   	"default_icon": "icon.png",
-//     "default_popup": "browser_action.html"
-//   },
-//   "commands": {
-//     "playSound": {
-//       "suggested_key": {
-//       	"default": "Ctrl+Z",
-//       	"mac": "Command+Z"
-//       },
-//       "description": "Send a 'playSound' event to the extension"
-//     },
-//     "_execute_browser_action": {
-//       "suggested_key": {
-//         "default": "Ctrl+1",
-//         "mac": "Command+1"
-//       }
-//     }
-//   }
-// }
 {
-  "name": "Event Page Example",
-  "description": "Demonstrates usage and features of the event page",
-  "version": "1.0",
-  "manifest_version": 2,
-  "permissions": ["alarms", "tabs", "bookmarks", "*://*/*"],
+  "name": "BINDERINO",
+  "version": "1.1",
+  "description": "Easy navigation for the blind.",
+  "permissions": [
+    "<all_urls>",
+    "tts",
+    "tabs"
+  ],
+
+  // Javascript that will always run in the background
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "scripts": [
+      "jquery.min.js","background.js"
+    ]
   },
+
+  // Browser Chrome extension icon details
   "browser_action": {
-    "default_icon" : "icon.png",
-    "default_popup": "browser_action.html"
+    "default_icon": "icon.png",
+    "default_title": "BLINDERINO"
   },
-  "commands": {
-    "open-google": {
-      "description": "Open a tab to google.com",
-      "suggested_key": { "default": "Ctrl+Shift+K" }
-    },
-    "_execute_browser_action": {
-      "suggested_key": { "default": "Ctrl+Z" }
+
+  // "options_page": "options.html",
+
+  "minimum_chrome_version": "14",
+
+  // Javascript that always runs on every page Chrome has
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "all_frames": true,
+      "js": [
+        "jquery.min.js", "content_script.js"
+      ]
     }
-  }
+  ],
+
+  "manifest_version": 2
 }
