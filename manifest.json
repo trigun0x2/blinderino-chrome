@@ -21,6 +21,13 @@
     "default_title": "BLINDERINO"
   },
 
+  // Shortcut command
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": { "default": "Ctrl+Z" }
+    }
+  },
+
   // "options_page": "options.html",
 
   "minimum_chrome_version": "14",
