@@ -42,7 +42,7 @@
       ],
       "all_frames": true,
       "js": [
-        "jquery.min.js", "content_script.js"
+        "jquery.min.js", "jwerty.js", "content_script.js"
       ]
     }
   ],

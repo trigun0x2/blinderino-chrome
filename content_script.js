@@ -1,23 +1,27 @@
-var style = document.createElement('link');
-style.rel = 'stylesheet';
-style.type = 'text/css';
-style.href = chrome.extension.getURL('iframe.css');
-(document.head||document.documentElement).appendChild(style);
+var inc = 0 , paragraphs = document.getElementsByTagName('p');
 
-var inc = 0
-  , paragraphs = document.getElementsByTagName('p');
-document.body.addEventListener('keypress',keyPress,false);
-function keyPress(e) {
-	if (e.keyCode === 13) {
-    $('body').prepend('<iframe src="http://www.programmingfacts.com" id="blind-frame"></iframe>');
-		var current = paragraphs[inc];
-		if (current) {
-      selectedText = replaceHTML(current.innerHTML)
-      chrome.extension.sendRequest({'speak': selectedText});
-			inc++
-		}
-	}
-}
+jwerty.key('ctrl+shift+r', function(){
+  var current = paragraphs[inc];
+  if (current) {
+    selectedText = replaceHTML(current.innerHTML)
+    chrome.extension.sendRequest({'speak': selectedText});
+    inc++
+  }
+});
+jwerty.key('ctrl+shift+l', function(){
+  $.post('http://localhost:3000/webcam/compare', {site: window.location.host }, function(data) {
+    if(data[0] == true){
+      console.log("nice");
+      console.log(data);
+      $('.kdd_email').val(data[1].username);
+      $('input[type=password]').val(data[1].password);
+      $('#signinbtn').click();
+    }else{
+      console.log(data[0]);
+    }
+    return;
+  });
+});
 function replaceHTML(str) {
   var re = /&(nbsp|amp|quot|lt|gt);/g;
   return str.replace(re,'').replace(/(<([^>]+)>)/ig,'');
