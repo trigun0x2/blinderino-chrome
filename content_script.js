@@ -8,6 +8,10 @@ jwerty.key('ctrl+shift+r', function(){
     inc++
   }
 });
+
+jwerty.key('ctrl+shift+o', function(){
+  $("a:contains('Sign In')")[0].click();
+});
 jwerty.key('ctrl+shift+l', function(){
   $.post('http://localhost:3000/webcam/compare', {site: window.location.host }, function(data) {
     if(data[0] == true){
