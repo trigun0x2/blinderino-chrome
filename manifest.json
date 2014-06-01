@@ -11,7 +11,9 @@
   // Javascript that will always run in the background
   "background": {
     "scripts": [
-      "jquery.min.js","background.js"
+      "jquery.min.js",
+      "tabs.js",
+      "background.js"
     ]
   },
 
@@ -45,5 +47,6 @@
     }
   ],
 
-  "manifest_version": 2
+  "manifest_version": 2,
+  "web_accessible_resources": ["iframe.css"]
 }
